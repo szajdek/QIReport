@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" id="ReportItemSchemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DimensionDto" nillable="true" type="DimensionDto" />
+  <xs:complexType name="DimensionDto">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="BalloonNo" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NominalValue" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UpperDeviation" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LowerDeviation" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ActualValue" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Deviation" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsOutOfTolerance" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
