@@ -1,0 +1,2 @@
+## QIReport
+Projekt - nauka C#
