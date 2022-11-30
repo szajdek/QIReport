@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using QIReport.Reporting;
 using QualityShims.Model;
 using QualityShims.ReportDto;
 using QualityShims.ViewModel;
@@ -21,6 +22,7 @@ namespace QualityShims.Forms
     {
         private ApplicationDbContext _context;
         private IMapper _mapper;
+        private IReportService _reportService;
 
         public ManageInspectionReportsForm()
         {
@@ -29,6 +31,7 @@ namespace QualityShims.Forms
             var config = new MapperConfiguration(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly()));
             //config.AssertConfigurationIsValid();
             _mapper = config.CreateMapper();
+            _reportService = new ReportService();
         }
 
         private void PopulateDgv()
@@ -39,8 +42,7 @@ namespace QualityShims.Forms
 
         private void ShowReport(ShimInspectionReportDto reportDto)
         {
-            LoadInspectionReportForm loadInspectionReportForm = new LoadInspectionReportForm(reportDto);
-            loadInspectionReportForm.Show();
+            _reportService.ShowReport(reportDto);
         }
 
         private void ManageInspectionReportsForm_Load(object sender, EventArgs e)
@@ -50,8 +52,12 @@ namespace QualityShims.Forms
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            var reportDto = _context.ShimInspectionReports.ProjectTo<ShimInspectionReportDto>(_mapper.ConfigurationProvider).FirstOrDefault();
-            ShowReport(reportDto);
+            int inspectionReportId = Convert.ToInt32(dgvInspectionReports.CurrentRow.Cells[0].Value);
+            var reportDto = _context.ShimInspectionReports.Where(x => x.Id == inspectionReportId).ProjectTo<ShimInspectionReportDto>(_mapper.ConfigurationProvider).FirstOrDefault();
+            if (reportDto != null)
+            {
+                ShowReport(reportDto);
+            }
         }
     }
 }

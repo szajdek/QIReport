@@ -6,15 +6,14 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ReferencePath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\dotnet\</ReferencePath>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Reports\ShimInspectionReport.rdlc" />
+    <None Remove="Reporting\ReportDefinitions\ShimInspectionReport.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Reports\ShimInspectionReport.rdlc" />
+    <EmbeddedResource Include="Reporting\ReportDefinitions\ShimInspectionReport.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,25 +26,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
     <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.17" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{c0c07587-41a7-46c8-8fbd-3f9c8ebe2ddc}" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

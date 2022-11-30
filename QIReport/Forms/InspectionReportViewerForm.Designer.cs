@@ -1,6 +1,6 @@
 ﻿namespace QualityShims.Forms
 {
-    partial class LoadInspectionReportForm
+    partial class InspectionReportViewerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,15 +39,15 @@
             this.reportViewer1.Size = new System.Drawing.Size(396, 246);
             this.reportViewer1.TabIndex = 0;
             // 
-            // LoadInspectionReportForm
+            // InspectionReportViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
-            this.Name = "LoadInspectionReportForm";
+            this.Name = "InspectionReportViewerForm";
             this.Text = "Raport pomiarowy";
-            this.Load += new System.EventHandler(this.LoadInspectionReportForm_Load);
+            this.Load += new System.EventHandler(this.InspectionReportViewerForm_Load);
             this.ResumeLayout(false);
 
         }
