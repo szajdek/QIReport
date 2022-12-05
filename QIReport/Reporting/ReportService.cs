@@ -1,4 +1,5 @@
 ﻿using Microsoft.Reporting.WinForms;
+using QIReport.Factories;
 using QualityShims.Forms;
 using QualityShims.ReportDto;
 
@@ -11,7 +12,7 @@ namespace QIReport.Reporting
         public void ShowReport(ShimInspectionReportDto reportDto)
         {
             _reportDto = reportDto;
-            InspectionReportViewerForm inspectionReportViewerForm = new InspectionReportViewerForm();
+            var inspectionReportViewerForm = new FormFactory().CreateForm<InspectionReportViewerForm>();
             inspectionReportViewerForm.Show();
         }
 

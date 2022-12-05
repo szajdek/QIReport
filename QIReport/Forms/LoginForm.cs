@@ -13,11 +13,12 @@ namespace QualityShims.Forms
 {
     public partial class LoginForm : Form
     {
-        private ApplicationDbContext _context = new ApplicationDbContext();
+        private readonly ApplicationDbContext _context;
 
-        public LoginForm()
+        public LoginForm(ApplicationDbContext context)
         {
             InitializeComponent();
+            _context = context;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

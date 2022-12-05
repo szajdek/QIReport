@@ -18,10 +18,7 @@ namespace QualityShims
         public DbSet<ActualDimension> ActualDimensions { get; set; }
         public DbSet<InspectionReport> InspectionReports { get; set; }
         public DbSet<ShimInspectionReport> ShimInspectionReports { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString);
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<InspectionReport>()

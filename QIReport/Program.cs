@@ -1,6 +1,10 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QIReport.Factories;
+using QIReport.Reporting;
 using QualityShims.Forms;
+using System.Configuration;
 
 namespace QualityShims
 {
@@ -19,14 +23,26 @@ namespace QualityShims
             var host = Host.CreateDefaultBuilder()
                 .ConfigureServices(services =>
                 {
-                    services.AddSingleton<LoginForm>();
+                    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString));
+                    services.AddAutoMapper(typeof(Program));
+                    services.AddTransient<IReportService, ReportService>();
+                    services.AddTransient<MainForm>();
+                    services.AddTransient<LoginForm>();
+                    services.AddTransient<AddShimInspectionReportForm>();
+                    services.AddTransient<ManageInspectionReportsForm>();
+                    services.AddTransient<InspectionReportViewerForm>();
                     var provider = services.BuildServiceProvider();
                 }).Build();
 
-            var loginForm = host.Services.GetRequiredService<LoginForm>();
+            var serviceProvider = host.Services;
+
+            var formFactory = new FormFactory();
+            formFactory.SetServiceProvider(serviceProvider);
+
+            var loginForm = formFactory.CreateForm<LoginForm>();
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new MainForm());
+                Application.Run(formFactory.CreateForm<MainForm>());
             }
         }
     }

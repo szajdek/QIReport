@@ -20,18 +20,17 @@ namespace QualityShims.Forms
 {
     public partial class ManageInspectionReportsForm : Form
     {
-        private ApplicationDbContext _context;
-        private IMapper _mapper;
-        private IReportService _reportService;
+        private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
+        private readonly IReportService _reportService;
 
-        public ManageInspectionReportsForm()
+        public ManageInspectionReportsForm(ApplicationDbContext context, IMapper mapper, IReportService reportService)
         {
             InitializeComponent();
-            _context = new ApplicationDbContext();
-            var config = new MapperConfiguration(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly()));
-            //config.AssertConfigurationIsValid();
-            _mapper = config.CreateMapper();
-            _reportService = new ReportService();
+            _context = context;
+            //mapper.ConfigurationProvider.AssertConfigurationIsValid();
+            _mapper = mapper;
+            _reportService = reportService;
         }
 
         private void PopulateDgv()

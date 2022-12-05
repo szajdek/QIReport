@@ -1,3 +1,4 @@
+using QIReport.Factories;
 using QualityShims.Forms;
 
 namespace QualityShims
@@ -11,13 +12,13 @@ namespace QualityShims
 
         private void btnMeasure_Click(object sender, EventArgs e)
         {
-            AddShimInspectionReportForm addShimInspectionReportForm = new AddShimInspectionReportForm();
+            var addShimInspectionReportForm = new FormFactory().CreateForm<AddShimInspectionReportForm>();
             addShimInspectionReportForm.ShowDialog();
         }
 
         private void btnReports_Click(object sender, EventArgs e)
         {
-            ManageInspectionReportsForm manageInspectionReportsForm = new ManageInspectionReportsForm();
+            var manageInspectionReportsForm = new FormFactory().CreateForm<ManageInspectionReportsForm>();
             manageInspectionReportsForm.ShowDialog();
         }
     }

@@ -14,13 +14,14 @@ namespace QualityShims.Forms
 {
     public partial class AddShimInspectionReportForm : Form
     {
-        private ApplicationDbContext _context = new ApplicationDbContext();
+        private readonly ApplicationDbContext _context;
         private ShimInspectionReport _report = new ShimInspectionReport();
         private Dictionary<TextBox, ActualDimension> _dimensions;
 
-        public AddShimInspectionReportForm()
+        public AddShimInspectionReportForm(ApplicationDbContext context)
         {
             InitializeComponent();
+            _context = context;
         }
 
         private void PopulateCbPartType()
